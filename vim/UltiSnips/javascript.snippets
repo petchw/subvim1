@@ -1,0 +1,64 @@
+snippet render "render function() {} template"
+render: function() {
+  $0
+}
+endsnippet
+
+snippet bv "backbond view extend"
+var $1 = Backbone.View.extend({
+  $2
+});
+endsnippet
+
+snippet tc "Handlebars compile"
+template: Handlebars.compile(
+  $0
+),
+endsnippet
+
+snippet bm "backbond model extend"
+var $1 = Backbone.Model.extend({
+  $2
+});
+endsnippet
+
+
+snippet init "initialize function"
+initialize: function() {
+  $1
+},
+endsnippet
+
+snippet fun2 "arg: function() {}"
+$1: function() {
+  $2
+}
+endsnippet
+
+snippet bc "backbond Collection extend"
+var $1 = Backbone.Collection.extend({
+  $2
+});
+endsnippet
+
+snippet br "backbond Router extend"
+var $1 = Backbone.Router.extend({
+  $2
+});
+endsnippet
+
+snippet ji "javascipt id selector"
+$("#$1").$2($3);
+endsnippet
+
+snippet jc "javascipt class selector"
+$(".$1").$2($3);
+endsnippet
+
+snippet db "debugger"
+debugger;
+endsnippet
+
+snippet clj "console.log(JSON.stringify(x))"
+console.log(JSON.stringify($0));
+endsnippet

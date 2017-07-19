@@ -1,0 +1,116 @@
+map <C-K> <C-W>h<C-W>j
+map <C-L> <C-W>l<C-W>j
+map <C-I> <C-W>h<C-W>k
+map <C-O> <C-W>l<C-W>k
+
+set tabstop=4
+set shiftwidth=4
+set cindent
+set expandtab
+set autoindent
+
+map \hs :set hlsearch<cr>
+map \hx :set nohlsearch<cr>
+map \ll :source ~/.vim/custom/vimrc<cr>
+nmap \ii gg=Gg;
+imap \ii <esc>gg=Gg;
+" imap \ii <esc>gg=g'.
+
+" :help easymotion.txt
+let g:EasyMotion_leader_key = '<Leader>' 
+
+set guifont=Monaco:h14
+
+func! MyPrtMappings()
+	let g:ctrlp_prompt_mappings = {
+				\ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+				\ 'AcceptSelection("h")': ['<c-x>', '<c-s>'],
+				\ 'AcceptSelection("t")': ['<c-t>'],
+				\ 'AcceptSelection("v")': ['<c-cr>', '<RightMouse>'],
+				\ }
+endfunc
+
+let g:ctrlp_buffer_func = {
+  \ 'enter': 'MyPrtMappings',
+	\ 'exit':  'MyPrtMappings',
+	\ }
+
+" nmap <D-e> :CtrlPBuffer<cr>
+" imap <D-e> <esc>:CtrlPBuffer<cr>
+nmap \re :CtrlPBuffer<cr>
+imap \re <esc>:CtrlPBuffer<cr>
+
+" Back to the previous file
+nmap <D-j> :CtrlPMRUFiles<cr><cr>
+imap <D-j> <esc>:CtrlPMRUFiles<cr><cr>
+
+map \rr : ! open ~/StoryMaker/storymaker/www/index.html<cr>
+map \rt : ! open ~/upgrade/storymaker/www/index.html<cr>
+
+" map <C-'> :TComment<cr>
+" vmap <C-'> :TComment<cr>gv
+map \cm :TComment<cr>
+vmap \cm :TComment<cr>gv
+
+set cursorline
+
+map \nt :NERDTree ~/StoryMaker/storymaker/www<cr>
+
+map \py :set makeprg=python\ %<cr>
+
+
+nmap \fd <C-p>
+imap \fd <esc><C-p>
+
+
+
+let g:autopep8_indent_size=4
+let g:autopep8_disable_show_diff=1
+let g:autopep8_max_line_length=79
+let g:ycm_confirm_extra_conf = 0
+map \ap :call Autopep8(" --aggressive --aggressive")<cr>
+
+let g:clang_format#command = "/usr/bin/clang-format"
+
+" map <C-Y> :pyf ~/clang_format/clang-format.py<cr>
+" imap <C-Y> <c-o>:pyf ~/clang_format/clang-format.py<cr>
+map \cl ggVG:py3f ~/clang_format/clang-format.py<cr>
+imap \cl <c-o>ggVG:py3f ~/clang_format/clang-format.py<cr>
+
+map \cx ggVG! xmllint --format -<cr>
+imap \cx <c-o>ggVG! xmllint --format -<cr>
+
+
+map \ck :pyf ~/clang_format/clang-format.py<cr>
+imap \ck <c-o>:pyf ~/clang_format/clang-format.py<cr>
+" command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+set switchbuf=usetab
+
+nnoremap \vv :Ggr <cword><CR>
+nmap \vg :Ggr ''<left>
+imap \vg <esc>:Ggr ''<left>
+nnoremap \vf :Ggr 'class <cword>'<CR>
+            
+
+
+imap \rv serg,slava,mbaron,atelyshev_rfc
+
+" map \vc :w<CR>:exe ":!python " . getreg("%") . "" <CR>
+map \vc :w<CR>:exe ":make"<CR>
+
+map \vx :w<CR>:!%:p<CR>
+" let g:ycm_global_ycm_extra_conf="home/petch/.vim/base/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['java', 'scala']  }
+
+map \sc :SyntasticCheck<CR>
+imap \sc <c-o>:SyntasticCheck<cr>
+
+autocmd Filetype java setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype scala setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+
+
+au BufEnter *.scala setl formatprg=java\ -jar\ /home/petch/bin/scalariform.jar\ -f\ -q\ +compactControlReadability\ +alignParameters\ +alignSingleLineCaseStatements\ +doubleIndentClassDeclaration\ +rewriteArrowSymbols\ +preserveSpaceBeforeArguments\ --stdin\ --stdout
+au BufEnter *.scala setl equalprg=java\ -jar\ /home/petch/bin/scalariform.jar\ -f\ -q\ +compactControlReadability\ +alignParameters\ +alignSingleLineCaseStatements\ +doubleIndentClassDeclaration\ +rewriteArrowSymbols\ +preserveSpaceBeforeArguments\ --stdin\ --stdout

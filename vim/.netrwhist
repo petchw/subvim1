@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/petch/untitled folder/the-story_v-1.1/the-story'
+let g:netrw_dirhist_2='/Users/petch/learnpassport/PassportJS-Authentication'
+let g:netrw_dirhist_3='/Users/petch/learneveryauth/everyauth-master'
